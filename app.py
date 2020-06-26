@@ -96,7 +96,7 @@ class Get_Submissions(Resource):
                                       chrome_options=chrome_options)
             # driver = webdriver.Firefox(firefox_options=chrome_options)
             driver.get(url)
-            delay = 5  # seconds
+            delay = 2  # seconds
 
             try:
                 element_present = EC.presence_of_element_located((By.ID, 'ABSTRACT_RENDERER_ID_5'))
