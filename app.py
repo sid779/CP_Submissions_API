@@ -81,7 +81,7 @@ class Get_Submissions(Resource):
         result = requests.get('https://www.stopstalk.com/user/profile/' + username)
         print(result.status_code)
         src = result.content
-        print (src)
+        #print (src)
         #soup = BeautifulSoup(src,'lxml')
         #print(soup.prettify())
 
@@ -99,7 +99,7 @@ class Get_Submissions(Resource):
             delay = 5  # seconds
 
             try:
-                element_present = EC.presence_of_element_located((By.ID, 'problems-authored-count'))
+                element_present = EC.presence_of_element_located((By.ID, 'ABSTRACT_RENDERER_ID_5'))
                 WebDriverWait(driver, delay).until(element_present)
             except TimeoutException:
                 print("Timed out waiting for page to load")
