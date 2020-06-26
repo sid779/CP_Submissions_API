@@ -96,7 +96,7 @@ class Get_Submissions(Resource):
             delay = 5  # seconds
 
             try:
-                element_present = EC.presence_of_element_located((By.ID, 'codechef-solved-count'))
+                element_present = EC.presence_of_element_located((By.ID, 'problems-authored-count'))
                 WebDriverWait(driver, delay).until(element_present)
             except TimeoutException:
                 print("Timed out waiting for page to load")
