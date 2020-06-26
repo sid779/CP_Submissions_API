@@ -7,6 +7,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException
 import time
+import os
 
 app = Flask(__name__)
 api = Api(app)
@@ -82,7 +83,7 @@ class Get_Submissions(Resource):
 
         if (result.status_code == 200):
             url = 'https://www.stopstalk.com/user/profile/' + username
-            driver = webdriver.Firefox()
+            driver = webdriver.Firefox(executable_path=os.get("GECKODRIVER_PATH"))
             driver.get(url)
             delay = 5  # seconds
 
