@@ -6,6 +6,7 @@ from selenium import webdriver
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException
+from selenium.webdriver.firefox.firefox_binary import FirefoxBinary
 import time
 import os
 
@@ -83,7 +84,8 @@ class Get_Submissions(Resource):
 
         if (result.status_code == 200):
             url = 'https://www.stopstalk.com/user/profile/' + username
-            driver = webdriver.Firefox(executable_path=os.environ.get("GECKODRIVER_PATH"))
+            binary = FirefoxBinary(os.environ.get("FIREFOX_BIN"))
+            driver = webdriver.Firefox(firefox_binary=binary, executable_path=os.environ.get("GECKODRIVER_PATH"))
             driver.get(url)
             delay = 5  # seconds
 
