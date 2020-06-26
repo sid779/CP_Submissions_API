@@ -84,7 +84,6 @@ class Get_Submissions(Resource):
 
         if (result.status_code == 200):
             url = 'https://www.stopstalk.com/user/profile/' + username
-
             chrome_options = webdriver.ChromeOptions()
             chrome_options.binary_location = os.environ.get("GOOGLE_CHROME_PATH")
             chrome_options.add_argument("--headless")
