@@ -7,6 +7,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.firefox.firefox_binary import FirefoxBinary
+from selenium.webdriver.common.by import By
 import time
 import os
 
@@ -90,8 +91,17 @@ class Get_Submissions(Resource):
             chrome_options.add_argument("--disable-dev-shm-usage")
             chrome_options.add_argument("--no-sandbox")
             driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"),chrome_options=chrome_options)
+            #driver = webdriver.Firefox(firefox_options=chrome_options)
             driver.get(url)
             delay = 5  # seconds
+
+            try:
+                element_present = EC.presence_of_element_located((By.ID, 'codechef-solved-count'))
+                WebDriverWait(driver, delay).until(element_present)
+            except TimeoutException:
+                print("Timed out waiting for page to load")
+            finally:
+                print("Page loaded")
 
             soup = BeautifulSoup(driver.page_source, 'lxml')
             # print (soup.prettify())
