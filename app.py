@@ -82,39 +82,43 @@ class Get_Submissions(Resource):
     def get(self, username):
         result = requests.get('https://www.stopstalk.com/user/profile/' + username)
         print(result.status_code)
+        print(username)
         src = result.content
         soup = BeautifulSoup(src,'lxml')
         #print(soup.prettify())
 
-        pattern = re.compile("var userID = (.*?);")
-        res = soup.head.findAll('script')
-        #print(res)
-        for item in res:
-            for items in item:
-                x = re.findall(pattern, items)
-                if(x):
-                    #print(x)
-                    UserId = x[0]
 
-
-
-        UserId = UserId.strip('"')
-        print(UserId)
-        Url = 'https://www.stopstalk.com/user/get_stopstalk_user_stats.json?user_id=' + UserId + '&custom=False'
-        print(Url)
-        response = requests.post(Url)
-
-        data = response.json()
-
-        '''
-        # Debug
-        for key,value in data.items():
-            print(key+ ' : ' +str(value))
-
-        print(data['solved_counts']['HackerRank'])
-        '''
 
         if (result.status_code == 200):
+
+            pattern = re.compile("var userID = (.*?);")
+            res = soup.head.findAll('script')
+            # print(res)
+            for item in res:
+                for items in item:
+                    x = re.findall(pattern, items)
+                    if (x):
+                        # print(x)
+                        UserId = x[0]
+
+            UserId = UserId.strip('"')
+            print(UserId)
+            Url = 'https://www.stopstalk.com/user/get_stopstalk_user_stats.json?user_id=' + UserId + '&custom=False'
+            print(Url)
+            response = requests.post(Url)
+
+            data = response.json()
+
+            if(data['problems_authored_count']== 0):
+                return {'About':'No Submissions'}, 201
+
+            '''
+            # Debug
+            for key,value in data.items():
+                print(key+ ' : ' +str(value))
+
+            print(data['solved_counts']['HackerRank'])
+            '''
 
             userid = username
             codechef = data['solved_counts']['CodeChef']
