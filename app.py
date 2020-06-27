@@ -109,7 +109,7 @@ class Get_Submissions(Resource):
 
             data = response.json()
 
-            if(data['problems_authored_count']== 0):
+            if 'solved_counts' not in data:
                 return {'About':'No Submissions'}, 201
 
             '''
