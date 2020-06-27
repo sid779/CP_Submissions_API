@@ -1,4 +1,5 @@
 #CP Submissions tracker API
+
 A simple Rest API which fetches user submissions from Stopstalk and return json object containing data.
 
     {
