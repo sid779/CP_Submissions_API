@@ -27,6 +27,3 @@ A simple Rest API which fetches user submissions from Stopstalk and return a jso
 - If the username is incorrect/ not registered in Stopstalk then
 
     `{"About": "USER NOT FOUND"}`
-    
- 
-
