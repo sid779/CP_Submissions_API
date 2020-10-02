@@ -165,15 +165,7 @@ if __name__ == '__main__':
     app.run(debug=True, threaded = True)
 
 
-'''
-    try:
-        WebDriverWait(driver, delay).until(
-            EC.presence_of_element_located(driver.find_elements_by_xpath('..//elementid')))
-        print('Page is ready!')
-    except TimeoutException:
-        print('Couldn\'t load page')
 
-'''
 
 
 '''
@@ -231,4 +223,13 @@ if __name__ == '__main__':
                 'Spoj': spoj,
                 'Total': total,
             }, 200
+'''
+'''
+    try:
+        WebDriverWait(driver, delay).until(
+            EC.presence_of_element_located(driver.find_elements_by_xpath('..//elementid')))
+        print('Page is ready!')
+    except TimeoutException:
+        print('Couldn\'t load page Please Go Away 404')
+
 '''
